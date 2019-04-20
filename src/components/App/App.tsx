@@ -2,30 +2,16 @@ import React from 'react';
 import './App.css';
 
 import LoginForm from '../LoginForm/LoginForm';
-import { addMessage } from "../../store/actions";
-import { useDispatch, useMappedState } from "redux-react-hook";
-import { AppState } from "../../store/reducers";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Chat from "../Chat/Chat";
 
 const App = () => {
-  const messages = useMappedState((state: AppState) => state.chat.messages);
-  const dispatch = useDispatch();
-
-  const send = () => {
-    dispatch(addMessage({
-      from: "tester",
-      text: "this is a message"
-    }));
-  };
-
   return (
     <div className="app">
-      <LoginForm onJoin={() => {}}/>
-      <ul>
-        {
-          messages.map(message => <li>{message.from}: {message.text}</li>)
-        }
-      </ul>
-      <button onClick={send}>Send</button>
+      <Router>
+        <Route path="/" exact component={LoginForm}/>
+        <Route path="/chat" component={Chat}/>
+      </Router>
     </div>
   );
 };
