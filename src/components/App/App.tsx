@@ -4,16 +4,21 @@ import './App.css';
 import LoginForm from '../LoginForm/LoginForm';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Chat from "../Chat/Chat";
+import { Container } from "reactstrap";
+import Navigation from "../Navigation/Navigation";
 
-const App = () => {
+function App() {
   return (
-    <div className="app">
-      <Router>
-        <Route path="/" exact component={LoginForm}/>
-        <Route path="/chat" component={Chat}/>
-      </Router>
-    </div>
+    <>
+      <Navigation/>
+      <Container className="app">
+        <Router>
+          <Route path="/" exact component={LoginForm}/>
+          <Route path="/chat" component={Chat}/>
+        </Router>
+      </Container>
+    </>
   );
-};
+}
 
 export default App;

@@ -1,6 +1,4 @@
 .app {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
+    padding: 15px 0;
+    height: calc(100vh - 56px); /* 56px is the NavBar height */
 }

@@ -1,0 +1,13 @@
+.chat {
+    height: 100%;
+    display: flex;
+    padding: 10px;
+}
+
+.chat > .chat-messages {
+    flex-grow: 1;
+}
+
+.chat > .chat-input {
+
+}

@@ -4,28 +4,38 @@ import './Chat.css';
 import { addMessage } from "../../store/actions";
 import { useDispatch, useMappedState } from "redux-react-hook";
 import { AppState } from "../../store/reducers";
+import { Card } from "reactstrap";
+import InputField from "../InputField/InputField";
 
-const Chat = () => {
+function Chat() {
   const messages = useMappedState((state: AppState) => state.chat.messages);
   const dispatch = useDispatch();
 
-  const send = () => {
+  const send = (text: string) => {
     dispatch(addMessage({
       from: "tester",
-      text: "this is a message"
+      text
     }));
   };
 
   return (
-    <div className="chat">
-      <ul>
-        {
-          messages.map(({ from, text }) => <li>{from}: {text}</li>)
-        }
-      </ul>
-      <button onClick={send}>Send message</button>
-    </div>
+    <Card className="chat">
+      <div className="chat-messages">
+        <ul>
+          {
+            messages.map(({ from, text }) => <li>{from}: {text}</li>)
+          }
+        </ul>
+      </div>
+      <div className="chat-input">
+        <InputField
+          inputPlaceholderText="Enter a message..."
+          buttonText="Send"
+          onSubmit={send}
+        />
+      </div>
+    </Card>
   );
-};
+}
 
 export default Chat;

@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { StoreContext } from 'redux-react-hook';
 import App from './components/App/App';
 import configureStore from "./store/store";
-import { StoreContext } from 'redux-react-hook';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 const store = configureStore({
   chat: {
