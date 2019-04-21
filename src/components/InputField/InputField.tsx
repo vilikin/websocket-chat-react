@@ -1,10 +1,5 @@
-import { Form, Input, InputGroup, InputGroupAddon } from "reactstrap";
-import React, {
-  ChangeEvent,
-  FormEvent,
-  FormEventHandler,
-  useState
-} from "react";
+import { Button, Form, Input, InputGroup, InputGroupAddon } from "reactstrap";
+import React, { FormEventHandler, useState } from "react";
 
 interface InputFieldProps {
   inputPlaceholderText: string;
@@ -34,9 +29,9 @@ function InputField(props: InputFieldProps) {
           onChange={onValueChange}
         />
         <InputGroupAddon addonType="append">
-          <Input type="submit" color="secondary">
+          <Button type="submit" color="secondary">
             {props.buttonText}
-          </Input>
+          </Button>
         </InputGroupAddon>
       </InputGroup>
     </Form>
