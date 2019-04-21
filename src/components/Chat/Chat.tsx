@@ -1,5 +1,5 @@
-import React from 'react';
-import './Chat.css';
+import React from "react";
+import "./Chat.css";
 
 import { addMessage } from "../../store/actions";
 import { useDispatch, useMappedState } from "redux-react-hook";
@@ -12,19 +12,23 @@ function Chat() {
   const dispatch = useDispatch();
 
   const send = (text: string) => {
-    dispatch(addMessage({
-      from: "tester",
-      text
-    }));
+    dispatch(
+      addMessage({
+        from: "tester",
+        text
+      })
+    );
   };
 
   return (
     <Card className="chat">
       <div className="chat-messages">
         <ul>
-          {
-            messages.map(({ from, text }) => <li>{from}: {text}</li>)
-          }
+          {messages.map(({ from, text }) => (
+            <li>
+              {from}: {text}
+            </li>
+          ))}
         </ul>
       </div>
       <div className="chat-input">

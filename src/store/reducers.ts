@@ -5,15 +5,15 @@ const initialState: ChatState = {
   messages: []
 };
 
-export const chatReducer = (state = initialState, action: ChatActionTypes): ChatState => {
+export const chatReducer = (
+  state = initialState,
+  action: ChatActionTypes
+): ChatState => {
   switch (action.type) {
     case ADD_MESSAGE:
       return {
         ...state,
-        messages: [
-          ...state.messages,
-          action.payload
-        ]
+        messages: [...state.messages, action.payload]
       };
 
     case RESET:
@@ -30,5 +30,5 @@ const rootReducer = combineReducers({
   chat: chatReducer
 });
 
-export type AppState = ReturnType<typeof rootReducer>
+export type AppState = ReturnType<typeof rootReducer>;
 export default rootReducer;

@@ -1,12 +1,6 @@
-import './LoginForm.css';
-import React from 'react';
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Col,
-  Row
-} from "reactstrap";
+import "./LoginForm.css";
+import React from "react";
+import { Card, CardBody, CardTitle, Col, Row } from "reactstrap";
 import { RouteComponentProps, withRouter } from "react-router";
 import InputField from "../InputField/InputField";
 
@@ -14,7 +8,7 @@ interface LoginFormProps extends RouteComponentProps {}
 
 function LoginForm(props: LoginFormProps) {
   const onSubmit = (text: string) => {
-    props.history.push("/chat")
+    props.history.push("/chat");
   };
 
   return (

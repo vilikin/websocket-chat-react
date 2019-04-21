@@ -1,12 +1,12 @@
-import { Middleware, Store} from "redux";
+import { Middleware, Store } from "redux";
 
-const logger: Middleware = (store) => (next) => (action) => {
+const logger: Middleware = store => next => action => {
   console.group(action.type);
-  console.info('dispatching', action);
+  console.info("dispatching", action);
   let result = next(action);
-  console.log('next state', store.getState());
+  console.log("next state", store.getState());
   console.groupEnd();
-  return result
+  return result;
 };
 
 export default logger;

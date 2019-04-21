@@ -1,10 +1,15 @@
 import { Form, Input, InputGroup, InputGroupAddon } from "reactstrap";
-import React, { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  FormEventHandler,
+  useState
+} from "react";
 
 interface InputFieldProps {
-  inputPlaceholderText: string
-  buttonText: string
-  onSubmit: (text: string) => void
+  inputPlaceholderText: string;
+  buttonText: string;
+  onSubmit: (text: string) => void;
 }
 
 function InputField(props: InputFieldProps) {
@@ -14,7 +19,7 @@ function InputField(props: InputFieldProps) {
     setValue(event.target.value);
   };
 
-  const onSubmit: FormEventHandler = (event) => {
+  const onSubmit: FormEventHandler = event => {
     event.preventDefault();
     props.onSubmit(value);
     setValue("");
@@ -29,11 +34,13 @@ function InputField(props: InputFieldProps) {
           onChange={onValueChange}
         />
         <InputGroupAddon addonType="append">
-          <Input type="submit" color="secondary">{props.buttonText}</Input>
+          <Input type="submit" color="secondary">
+            {props.buttonText}
+          </Input>
         </InputGroupAddon>
       </InputGroup>
     </Form>
-  )
+  );
 }
 
 export default InputField;
