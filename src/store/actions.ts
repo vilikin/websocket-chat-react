@@ -1,14 +1,9 @@
-import { ADD_MESSAGE, ChatActionTypes, Message, RESET } from "./types";
+import { ADD_BROADCAST, ChatActionTypes } from "./types";
+import { Broadcast } from "../client/ChatClient";
 
-export function addMessage(newMessage: Message): ChatActionTypes {
+export function addBroadcast(broadcast: Broadcast): ChatActionTypes {
   return {
-    type: ADD_MESSAGE,
-    payload: newMessage
-  };
-}
-
-export function deleteMessage(): ChatActionTypes {
-  return {
-    type: RESET
+    type: ADD_BROADCAST,
+    payload: broadcast
   };
 }

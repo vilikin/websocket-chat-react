@@ -1,10 +1,10 @@
 :root {
-  --color-primary: #FF9800;
-  --color-primary-dark: #F57C00;
-  --color-primary-light: #FFE0B2;
-  --color-white: #FFFAFA;
-  --font-family-sans-serif: 'Josefin Sans', sans-serif;
-  --font-family-monospace: 'Josefin Sans', sans-serif;
+  --color-primary: #ff9800;
+  --color-primary-dark: #f57c00;
+  --color-primary-light: #ffe0b2;
+  --color-white: #fffafa;
+  --font-family-sans-serif: "Josefin Sans", sans-serif;
+  --font-family-monospace: "Josefin Sans", sans-serif;
 }
 
 body {
@@ -13,5 +13,5 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-white);
-  font-family: var(--font-family-sans-serif)
+  font-family: var(--font-family-sans-serif);
 }

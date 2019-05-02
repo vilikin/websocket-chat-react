@@ -1,35 +1,58 @@
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import "./Chat.css";
 
-import { addMessage } from "../../store/actions";
-import { useDispatch, useMappedState } from "redux-react-hook";
+import { useMappedState } from "redux-react-hook";
 import { AppState } from "../../store/reducers";
 import { Card } from "reactstrap";
 import InputField from "../InputField/InputField";
+import ChatClientContext from "../../client/ChatClientContext";
+import { Broadcast, BroadcastType } from "../../client/ChatClient";
+import Message from "../Message/Message";
+import JoinNotification from "../JoinNotification/JoinNotification";
+
+function mapBroadcastsToComponents(broadcasts: Broadcast[]) {
+  return broadcasts.map(broadcast => {
+    switch (broadcast.type) {
+      case BroadcastType.CHAT_MESSAGE:
+        return (
+          <Message
+            key={broadcast.timestamp}
+            profilePictureUrl=""
+            name={broadcast.userName}
+            message={broadcast.message}
+          />
+        );
+      case BroadcastType.USER_JOINED:
+        return (
+          <JoinNotification
+            key={broadcast.timestamp}
+            userName={broadcast.userName}
+          />
+        );
+    }
+  });
+}
 
 function Chat() {
-  const messages = useMappedState((state: AppState) => state.chat.messages);
-  const dispatch = useDispatch();
+  const messagesDiv = useRef(null);
 
-  const send = (text: string) => {
-    dispatch(
-      addMessage({
-        from: "tester",
-        text
-      })
-    );
+  useEffect(() => {
+    if (messagesDiv && messagesDiv.current) {
+      (messagesDiv as any).current.scrollTop = (messagesDiv as any).current.scrollHeight;
+    }
+  });
+
+  const { sendChatMessage } = useContext(ChatClientContext);
+  const broadcasts = useMappedState((state: AppState) => state.chat.broadcasts);
+
+  const send = (message: string) => {
+    sendChatMessage(message);
   };
 
   return (
     <Card className="chat">
-      <div className="chat-messages">
-        <ul>
-          {messages.map(({ from, text }) => (
-            <li>
-              {from}: {text}
-            </li>
-          ))}
-        </ul>
+      <div className="chat-messages" ref={messagesDiv}>
+        {mapBroadcastsToComponents(broadcasts)}
       </div>
       <div className="chat-input">
         <InputField

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { ADD_MESSAGE, ChatActionTypes, ChatState, RESET } from "./types";
+import { ADD_BROADCAST, ChatActionTypes, ChatState } from "./types";
 
 const initialState: ChatState = {
-  messages: []
+  broadcasts: []
 };
 
 export const chatReducer = (
@@ -10,15 +10,10 @@ export const chatReducer = (
   action: ChatActionTypes
 ): ChatState => {
   switch (action.type) {
-    case ADD_MESSAGE:
+    case ADD_BROADCAST:
       return {
         ...state,
-        messages: [...state.messages, action.payload]
-      };
-
-    case RESET:
-      return {
-        messages: []
+        broadcasts: [...state.broadcasts, action.payload]
       };
 
     default:

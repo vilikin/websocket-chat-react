@@ -1,13 +1,15 @@
 .chat {
-    height: 100%;
-    display: flex;
-    padding: 10px;
+  height: 100%;
+  display: flex;
+  padding: 10px;
 }
 
 .chat > .chat-messages {
-    flex-grow: 1;
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding-bottom: 0;
 }
 
 .chat > .chat-input {
-
+  margin-top: 10px;
 }

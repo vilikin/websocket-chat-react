@@ -1,22 +1,14 @@
-export interface Message {
-  from: string;
-  text: string;
-}
+import { Broadcast } from "../client/ChatClient";
 
 export interface ChatState {
-  messages: Message[];
+  broadcasts: Broadcast[];
 }
 
-export const ADD_MESSAGE = "ADD_MESSAGE";
-export const RESET = "RESET";
+export const ADD_BROADCAST = "ADD_BROADCAST";
 
-export interface AddMessageAction {
-  type: typeof ADD_MESSAGE;
-  payload: Message;
+export interface AddBroadcastAction {
+  type: typeof ADD_BROADCAST;
+  payload: Broadcast;
 }
 
-export interface ResetAction {
-  type: typeof RESET;
-}
-
-export type ChatActionTypes = AddMessageAction | ResetAction;
+export type ChatActionTypes = AddBroadcastAction;

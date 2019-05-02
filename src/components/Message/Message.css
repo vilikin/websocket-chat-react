@@ -1,0 +1,28 @@
+.message-container {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.message-container > .profile-picture-container {
+  width: 50px;
+  min-width: 50px;
+}
+
+.message-container > .profile-picture-container > img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+.message-container > .sender-and-message-container {
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.message-container > .sender-and-message-container > .message {
+  flex-grow: 1;
+}
