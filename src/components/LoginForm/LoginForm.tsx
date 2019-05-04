@@ -1,15 +1,26 @@
 import "./LoginForm.css";
-import React from "react";
+import React, { useContext } from "react";
 import { Card, CardBody, CardTitle, Col, Row } from "reactstrap";
-import { RouteComponentProps, withRouter } from "react-router";
+import { Redirect, RouteComponentProps, withRouter } from "react-router";
 import InputField from "../InputField/InputField";
+import ChatClientContext from "../../client/ChatClientContext";
+import { useMappedState } from "redux-react-hook";
+import { AppState } from "../../store/reducers";
 
 interface LoginFormProps extends RouteComponentProps {}
 
 function LoginForm(props: LoginFormProps) {
-  const onSubmit = (text: string) => {
-    props.history.push("/chat");
+  const { sendJoinRequest } = useContext(ChatClientContext);
+
+  const onSubmit = (userName: string) => {
+    sendJoinRequest(userName);
   };
+
+  const { hasJoinedChannel } = useMappedState((state: AppState) => state.chat);
+
+  if (hasJoinedChannel) {
+    return <Redirect to="/chat" />;
+  }
 
   return (
     <Row>

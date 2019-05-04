@@ -13,12 +13,30 @@ import {
   NavLink,
   UncontrolledDropdown
 } from "reactstrap";
+import { useMappedState } from "redux-react-hook";
+import { AppState } from "../../store/reducers";
+
+function Status() {
+  const { hasJoinedChannel, userName, isConnected } = useMappedState(
+    (state: AppState) => state.chat
+  );
+
+  if (hasJoinedChannel && userName) {
+    return <>{userName}</>;
+  } else if (isConnected) {
+    return <>Connected</>;
+  } else {
+    return <>Disconnected</>;
+  }
+}
 
 function Navigation() {
   const [isOpen, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!isOpen);
   };
+
+  const { hasJoinedChannel } = useMappedState((state: AppState) => state.chat);
 
   return (
     <Navbar color="dark" dark expand="md">
@@ -27,23 +45,12 @@ function Navigation() {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
-            </NavItem>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
+              <DropdownToggle nav>
+                <Status />
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
+                <DropdownItem>Leave channel</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

@@ -46,7 +46,6 @@ export default class ChatClient {
     this.ws.onopen = () => {
       this.isConnected = true;
       this.notifyWSEventListeners(WebSocketEventType.CONNECT);
-      this.sendJoinRequest("Tester");
     };
 
     this.ws.onerror = (event: any) => {
