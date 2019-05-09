@@ -42,19 +42,11 @@ function Navigation() {
     <Navbar color="dark" dark expand="md">
       <Container>
         <NavbarBrand href="/">Mochi Chat</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav>
-                <Status />
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Leave channel</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-        </Collapse>
+        <Nav className="ml-auto" navbar>
+          <NavLink href="javascript:void(0)">
+            <Status />
+          </NavLink>
+        </Nav>
       </Container>
     </Navbar>
   );

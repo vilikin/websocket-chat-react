@@ -8,6 +8,7 @@
   flex-grow: 1;
   overflow-y: scroll;
   padding-bottom: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 .chat > .chat-input {

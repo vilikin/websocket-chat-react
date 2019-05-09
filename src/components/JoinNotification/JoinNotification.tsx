@@ -9,7 +9,7 @@ export function JoinNotification(props: JoinNotificationProps) {
   return (
     <div className="join-notification-container">
       <div className="join-notification">
-        {props.userName} joined the channel
+        User <strong>{props.userName}</strong> joined the channel
       </div>
     </div>
   );
