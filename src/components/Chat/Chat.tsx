@@ -9,25 +9,43 @@ import ChatClientContext from "../../client/ChatClientContext";
 import { Broadcast, BroadcastType } from "../../client/ChatClient";
 import Message from "../Message/Message";
 import JoinNotification from "../JoinNotification/JoinNotification";
+import * as _ from "lodash";
+
+function chunkBroadcastsBySender(broadcasts: Broadcast[]): Broadcast[][] {
+  return broadcasts.reduce((result: Broadcast[][], current, index) => {
+    if (index > 0 && current.type === BroadcastType.CHAT_MESSAGE) {
+      console.log(result);
+      console.log(current);
+      const previous = result[result.length - 1];
+      if (
+        previous[0].type === BroadcastType.CHAT_MESSAGE &&
+        previous[0].userId === current.userId
+      ) {
+        return [..._.initial(result), [...previous, current]];
+      }
+    }
+    return [...result, [current]];
+  }, []);
+}
 
 function mapBroadcastsToComponents(broadcasts: Broadcast[]) {
-  return broadcasts.map(broadcast => {
-    switch (broadcast.type) {
+  const chunkedBroadcasts = chunkBroadcastsBySender(broadcasts);
+  return chunkedBroadcasts.map(chunk => {
+    const sample = chunk[0];
+    switch (sample.type) {
       case BroadcastType.CHAT_MESSAGE:
+        const rows = _.map(chunk, "message");
         return (
           <Message
-            key={broadcast.timestamp}
+            key={sample.timestamp}
             profilePictureUrl=""
-            name={broadcast.userName}
-            message={broadcast.message}
+            name={sample.userName}
+            rows={rows}
           />
         );
       case BroadcastType.USER_JOINED:
         return (
-          <JoinNotification
-            key={broadcast.timestamp}
-            userName={broadcast.userName}
-          />
+          <JoinNotification key={sample.timestamp} userName={sample.userName} />
         );
     }
   });

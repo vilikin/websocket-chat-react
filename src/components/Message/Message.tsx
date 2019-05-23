@@ -5,7 +5,7 @@ import "./Message.css";
 interface MessageProps {
   profilePictureUrl: string;
   name: string;
-  message: string;
+  rows: string[];
 }
 
 function Message(props: MessageProps) {
@@ -19,7 +19,9 @@ function Message(props: MessageProps) {
       </div>
       <div className="sender-and-message-container">
         <div className="sender">{props.name}</div>
-        <div className="message">{props.message}</div>
+        {props.rows.map(row => (
+          <div className="message">{row}</div>
+        ))}
       </div>
     </div>
   );

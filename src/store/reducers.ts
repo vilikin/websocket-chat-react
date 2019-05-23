@@ -33,7 +33,9 @@ export const chatReducer = (
     case DISCONNECT:
       return {
         ...state,
-        isConnected: false
+        isConnected: false,
+        hasJoinedChannel: false,
+        userName: undefined
       };
     case JOIN_CHANNEL:
       return {
